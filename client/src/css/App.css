@@ -1,0 +1,53 @@
+.homeApp {
+  align-items: center;
+  margin: 2vw auto;
+}
+
+.homeHeader {
+  text-align: center;
+  padding: 20px;
+}
+
+.homeAppMenu {
+  float: left;
+  margin-top: 15px;
+  background-color: grey;
+  border-radius: 25%;
+}
+
+.homeMenuStack {
+  align-items: center;
+}
+
+.userSettingsBox {
+  width: 20%;
+  padding: 75px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userDrawerBox{
+  width: 20%;
+  position: absolute;
+  left: 0;
+}
+
+.drawerStack{
+  padding: 7rem;
+  align-items: center;
+  text-align: center;
+}
+
+.homeBody{
+  height: 100%;
+  margin: 10rem;
+  text-align: center;
+  box-shadow: inset 2px 2px 5px 0px black;
+}
