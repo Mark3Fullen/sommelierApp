@@ -13,15 +13,12 @@
         "mongoose": "^6.9.2"
     },
     "scripts": {
-      "start": "node server/server.js"
+      "start": "node server/server.js",
+      "heroku-postbuild": "cd client && npm install && npm run build && mv build ../server/public"
     },
     "engines": {
       "node": "14.x"
     },
-    "private": true,
-    "workspaces": [
-      "client",
-      "server"
-    ]
+    "private": true
   }
   
