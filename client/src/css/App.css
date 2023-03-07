@@ -4,8 +4,14 @@
 }
 
 .homeHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-top: 2rem;
   text-align: center;
-  padding: 20px;
+  z-index: 999;
 }
 
 .homeAppMenu {
@@ -21,7 +27,7 @@
 
 .userSettingsBox {
   width: 20%;
-  padding: 75px;
+  padding: 5rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -35,7 +41,6 @@
 
 .userDrawerBox{
   width: 20%;
-  position: absolute;
   left: 0;
 }
 
@@ -46,9 +51,7 @@
 }
 
 .homeBody{
-  height: 35rem;
+  height: 100%;
   margin: 7rem;
   text-align: center;
-  box-shadow: inset 2px 2px 5px 0px black;
-  overflow: auto;
 }

@@ -23,6 +23,7 @@ const App = () => {
   const [activeUser, setActiveUser] = useState({})
   const [favAlcohol, setFavAlcohol] = useState([])
   const [popAlcohol, setPopAlcohol] = useState([])
+  const [latAlcohol, setLatAlcohol] = useState([])
   const [userPatchName, setUserPatchName] = useState("")
   const [errorMSG, setErrorMSG] = useState("")
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -42,7 +43,24 @@ const App = () => {
     })
     .catch(error => {
       console.error(error);
-    })
+    })   
+
+  }, [])
+
+  useEffect(() => {
+
+    axios.get('https://the-cocktail-db.p.rapidapi.com/latest.php', {
+      headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_KEY,
+        'X-RapidAPI-Host': 'the-cocktail-db.p.rapidapi.com'
+      }
+      })
+      .then(response => {
+        setLatAlcohol(response.data.drinks);
+      })
+      .catch(error => {
+        console.error(error);
+      }) 
 
   }, [])
 
@@ -204,7 +222,7 @@ const App = () => {
         <div className="homeHeader">
 
           <Link to="/">
-            <Fab variant="extended" size="large" aria-label="add">App Name</Fab>
+            <Fab variant="extended" size="large" aria-label="add">Alcohol Paradise</Fab>
           </Link>
           
           <HomeAccordion activeUser={activeUser} setActiveUser={setActiveUser} onUserSubmit={onUserSubmit} onUserLogin={onUserLogin} updateUser={updateUser} onUserPatch={onUserPatch} setUserPatchName={setUserPatchName} onUserDelete={onUserDelete} errorMSG={errorMSG}/>
@@ -216,7 +234,7 @@ const App = () => {
         <div className="homeBody"> 
         
             <Routes>
-              <Route path="/" element={<HomePage activeUser={activeUser} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol} popAlcohol={popAlcohol}/>}/>
+              <Route path="/" element={<HomePage activeUser={activeUser} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol} latAlcohol={latAlcohol} popAlcohol={popAlcohol}/>}/>
             </Routes>
             <Routes>
               <Route path="/user" element={<UserPage user={activeUser} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol}/>}/>
