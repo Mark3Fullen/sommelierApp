@@ -9,6 +9,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, BrowserRouter, Route, Routes } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
+import axios from 'axios';
 
 const App = () => {
 
@@ -20,11 +21,30 @@ const App = () => {
     password: ""
   })
   const [activeUser, setActiveUser] = useState({})
+  const [favAlcohol, setFavAlcohol] = useState([])
+  const [popAlcohol, setPopAlcohol] = useState([])
   const [userPatchName, setUserPatchName] = useState("")
   const [errorMSG, setErrorMSG] = useState("")
   const [drawerOpen, setDrawerOpen] = useState(false)
   const drawerRef = useRef(null);
   const firstClickRef = useRef(true);
+
+  useEffect(() => {
+
+    axios.get('https://the-cocktail-db.p.rapidapi.com/popular.php', {
+    headers: {
+      'X-RapidAPI-Key': 'c8c69c19d6mshec6c7f59bc48c8cp17f5afjsncd258480a798',
+      'X-RapidAPI-Host': 'the-cocktail-db.p.rapidapi.com'
+    }
+    })
+    .then(response => {
+      setPopAlcohol(response.data.drinks);
+    })
+    .catch(error => {
+      console.error(error);
+    })
+
+  }, [])
 
   useEffect(() => {
 
@@ -196,10 +216,10 @@ const App = () => {
         <div className="homeBody"> 
         
             <Routes>
-              <Route path="/" element={<HomePage/>}/>
+              <Route path="/" element={<HomePage activeUser={activeUser} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol} popAlcohol={popAlcohol}/>}/>
             </Routes>
             <Routes>
-              <Route path="/user" element={<UserPage user={activeUser}/>}/>
+              <Route path="/user" element={<UserPage user={activeUser} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol}/>}/>
             </Routes>
             <Routes>
               <Route path="/about" element={<AboutPage/>}/>

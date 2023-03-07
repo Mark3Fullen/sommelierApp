@@ -46,8 +46,9 @@
 }
 
 .homeBody{
-  height: 100%;
-  margin: 10rem;
+  height: 35rem;
+  margin: 7rem;
   text-align: center;
   box-shadow: inset 2px 2px 5px 0px black;
+  overflow: auto;
 }
