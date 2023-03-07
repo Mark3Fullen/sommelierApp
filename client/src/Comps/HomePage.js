@@ -2,7 +2,7 @@ import '../css/cocktails.css';
 import React from "react";
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 const HomePage = (props) => {
@@ -12,7 +12,7 @@ const HomePage = (props) => {
     console.log(popAlcohol)
 
     return (
-        <div className='alcoholContainer'>
+        <div className='cd'>
             {Object.keys(popAlcohol).length > 0 ? popAlcohol.map((drink) => {
                 return (
                     <div className='alcoholItem' key={drink.idDrink}>

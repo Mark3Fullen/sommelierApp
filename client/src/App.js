@@ -33,7 +33,7 @@ const App = () => {
 
     axios.get('https://the-cocktail-db.p.rapidapi.com/popular.php', {
     headers: {
-      'X-RapidAPI-Key': 'c8c69c19d6mshec6c7f59bc48c8cp17f5afjsncd258480a798',
+      'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_KEY,
       'X-RapidAPI-Host': 'the-cocktail-db.p.rapidapi.com'
     }
     })
