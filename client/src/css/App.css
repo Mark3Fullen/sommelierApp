@@ -3,6 +3,11 @@
   margin: 2vw auto;
 }
 
+.adsbygoogle{
+  width: 100%;
+  height: 100%;
+}
+
 .homeHeader {
   position: fixed;
   top: 0;
@@ -50,8 +55,22 @@
   text-align: center;
 }
 
+.drawerStackLink{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.drawerStackLinkAbout{
+  position: fixed;
+  bottom: 2rem;
+  text-decoration: none;
+}
+
 .homeBody{
   height: 100%;
-  margin: 7rem;
+  margin: 8rem;
+  margin-left: 15rem;
+  margin-right: 15rem;
   text-align: center;
 }

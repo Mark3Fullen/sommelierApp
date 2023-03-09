@@ -26,11 +26,11 @@ const HomeDrawer = (comps) => {
             }}>
               <Stack className='drawerStack' ref={drawerRef}>
 
-                {Object.keys(activeUser).length > 0 ? <Link to="/user">
+                {Object.keys(activeUser).length > 0 ? <Link className="drawerStackLink" to="/user">
                   <Button variant="contained">User Menu</Button>
                 </Link> : null}
                 
-                <Link to="/about">
+                <Link className="drawerStackLinkAbout" to="/about">
                   <Button variant="contained">About Page</Button>
                 </Link>
 

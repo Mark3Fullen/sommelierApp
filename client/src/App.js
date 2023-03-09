@@ -30,6 +30,8 @@ const App = () => {
   const drawerRef = useRef(null);
   const firstClickRef = useRef(true);
 
+  console.log(favAlcohol)
+
   useEffect(() => {
 
     axios.get('https://the-cocktail-db.p.rapidapi.com/popular.php', {
@@ -82,7 +84,6 @@ const App = () => {
 
   const updateUser = (v) => {
     return setUser((prev) => {
-      console.log({...user, ...v});
       return {...user, ...v};
     });
   }
