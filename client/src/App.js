@@ -24,13 +24,14 @@ const App = () => {
   const [favAlcohol, setFavAlcohol] = useState([])
   const [popAlcohol, setPopAlcohol] = useState([])
   const [latAlcohol, setLatAlcohol] = useState([])
+  const [showInstructions, setShowInstructions] = useState([])
   const [userPatchName, setUserPatchName] = useState("")
   const [errorMSG, setErrorMSG] = useState("")
   const [drawerOpen, setDrawerOpen] = useState(false)
   const drawerRef = useRef(null);
   const firstClickRef = useRef(true);
 
-  console.log(favAlcohol)
+  console.log(popAlcohol)
 
   useEffect(() => {
 
@@ -235,10 +236,10 @@ const App = () => {
         <div className="homeBody"> 
         
             <Routes>
-              <Route path="/" element={<HomePage activeUser={activeUser} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol} latAlcohol={latAlcohol} popAlcohol={popAlcohol}/>}/>
+              <Route path="/" element={<HomePage activeUser={activeUser} setShowInstructions={setShowInstructions} showInstructions={showInstructions} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol} latAlcohol={latAlcohol} popAlcohol={popAlcohol}/>}/>
             </Routes>
             <Routes>
-              <Route path="/user" element={<UserPage user={activeUser} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol}/>}/>
+              <Route path="/user" element={<UserPage user={activeUser} setShowInstructions={setShowInstructions} showInstructions={showInstructions} favAlcohol={favAlcohol} setFavAlcohol={setFavAlcohol}/>}/>
             </Routes>
             <Routes>
               <Route path="/about" element={<AboutPage/>}/>
