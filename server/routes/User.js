@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Favorite = require('../models/Favorite');
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
@@ -128,5 +129,44 @@ router.delete('/:id', verifyToken, async (req, res) => {
         res.status(500).json({ message: 'Server Error' })
     }
 });
+
+router.get('/favorites', verifyToken, async (req, res) => {
+    try {
+      const userId = req.user.userId;
+
+      const user = await User.findById(userId);
+      const favorites = user.favorites;
+  
+      console.log("Getting Favorites")
+      res.status(200).json({ favorites });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
+  
+  router.post('/favorites', verifyToken, async (req, res) => {
+    try {   
+      const { favorites } = req.body;
+      const userId = req.user.userId;
+  
+      const favoriteObjects = favorites.map((alcohol) => new Favorite({ user: userId, drinkId: alcohol }));
+      const savedFavorites = await Favorite.insertMany(favoriteObjects);
+  
+        console.log(savedFavorites);
+
+      const user = await User.findById(userId);
+
+        user.favorites = savedFavorites.map((fav) => fav.drinkId);
+
+      await user.save();
+  
+      console.log("Posting Favorites")
+      res.status(200).json({ favorites: savedFavorites });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
 
 module.exports = router;

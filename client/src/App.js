@@ -31,7 +31,75 @@ const App = () => {
   const drawerRef = useRef(null);
   const firstClickRef = useRef(true);
 
-  console.log(popAlcohol)
+  const getFavorites = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/user/favorites", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const favoriteIds = data.favorites.map((fav) => fav);
+
+        const newFavAlcohol = [];
+
+        for (const drink of popAlcohol) {
+          if (favoriteIds.includes(parseInt(drink.idDrink))) {
+            console.log('checked!')
+            newFavAlcohol.push(drink);
+          }
+        }
+
+        for (const drink of latAlcohol) {
+          if (favoriteIds.includes(parseInt(drink.idDrink))) {
+            newFavAlcohol.push(drink);
+          }
+        }
+
+        setFavAlcohol(newFavAlcohol);
+      } else {
+        console.error("Failed to get favorites");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (Object.keys(activeUser).length > 0) {
+      getFavorites();
+    }
+  }, [activeUser]);
+
+  const saveFavorites = async (favAlcohol) => {
+    const drinkIdArray = favAlcohol.map((item) => item.idDrink)
+    try {
+      const response = await fetch("http://localhost:5000/user/favorites", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ favorites: drinkIdArray}),
+      });
+      if (!response.ok) {
+        console.log(response)
+        console.error("Failed to save favorites");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (Object.keys(activeUser).length > 0 && favAlcohol.length > 0) {
+      const intervalId = setInterval(() => {
+        saveFavorites(favAlcohol);
+      }, 5000);
+      return () => clearInterval(intervalId);
+    }
+  }, [activeUser, favAlcohol]);
 
   useEffect(() => {
 

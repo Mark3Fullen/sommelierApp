@@ -13,7 +13,13 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  favorites: [
+    {
+      type: Number,
+      default: []
+    }
+  ]
 });
 
 const User = mongoose.model('User', userSchema);

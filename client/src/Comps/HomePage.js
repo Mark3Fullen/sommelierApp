@@ -22,7 +22,7 @@ const HomePage = (props) => {
             return (
                 <div className='alcoholItem' key={drink.idDrink}>
                     {!isInstructions ? <div onClick={() => {
-                    console.log('clicked?')
+                    console.log(isInstructions)
                     if (!isInstructions) {
                         setShowInstructions([...showInstructions, latAlcohol.find(pop => pop.idDrink === drink.idDrink)])
                     } else {
@@ -39,7 +39,7 @@ const HomePage = (props) => {
                         <p className='alcoholItemING'>Main Ingredients: {drink.strIngredient1}, {drink.strIngredient2}, {drink.strIngredient3}{drink.strIngredient4 ? ',' : null} {drink.strIngredient4}</p>
                     </div> 
                     : 
-                    <div className='back' onClick={() => {
+                    <div onClick={() => {
                         console.log('clicked?')
                         if (!isInstructions) {
                             setShowInstructions([...showInstructions, latAlcohol.find(pop => pop.idDrink === drink.idDrink)])
