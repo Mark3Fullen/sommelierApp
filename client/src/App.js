@@ -33,7 +33,7 @@ const App = () => {
 
   const getFavorites = async () => {
     try {
-      const response = await fetch("http://localhost:5000/user/favorites", {
+      const response = await fetch("https://sommappbackend-dot-tactile-cinema-379720.uc.r.appspot.com/user/favorites", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -75,7 +75,7 @@ const App = () => {
   const saveFavorites = async (favAlcohol) => {
     const drinkIdArray = favAlcohol.map((item) => item.idDrink)
     try {
-      const response = await fetch("http://localhost:5000/user/favorites", {
+      const response = await fetch("https://sommappbackend-dot-tactile-cinema-379720.uc.r.appspot.com/user/favorites", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -169,7 +169,7 @@ const App = () => {
       return;
     }
 
-    await fetch("http://localhost:5000/user/register", {
+    await fetch("https://sommappbackend-dot-tactile-cinema-379720.uc.r.appspot.com/user/register", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -212,7 +212,7 @@ const App = () => {
       return;
     }
 
-    await fetch("http://localhost:5000/user/login", {
+    await fetch("https://sommappbackend-dot-tactile-cinema-379720.uc.r.appspot.com/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -248,7 +248,7 @@ const App = () => {
 
     const userId = activeUser._id;
     
-    await fetch(`http://localhost:5000/user/${userId}`, {
+    await fetch(`https://sommappbackend-dot-tactile-cinema-379720.uc.r.appspot.com/user/${userId}`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
@@ -268,7 +268,7 @@ const App = () => {
 
     const userId = activeUser._id;
   
-    await fetch(`http://localhost:5000/user/${userId}`, {
+    await fetch(`https://sommappbackend-dot-tactile-cinema-379720.uc.r.appspot.com/user/${userId}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
